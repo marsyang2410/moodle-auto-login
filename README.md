@@ -8,7 +8,6 @@ This is a **secure** Chrome extension that automatically logs you into your Mood
 
 - ✅ **Auto-login every 20 minutes** to prevent session expiration.
 - ✅ **Secure credential storage** (no hardcoded credentials).
-- ✅ **Popup notification**: "Auto Logging-in via Chrome Extension" when auto-login occurs.
 - ✅ **Options page** to input Moodle login URL, username, and password.
 - ✅ **Quick-select Moodle URL dropdown** for commonly used Moodle systems.
 - ✅ **Lightweight & efficient**—runs in the background without affecting performance.
@@ -16,7 +15,6 @@ This is a **secure** Chrome extension that automatically logs you into your Mood
 ## 🛠 Installation
 
 1. **Download the extension**
-   - [Click here to download the latest version](sandbox:/mnt/data/moodle-auto-login-secure-v1.1.zip)
 2. **Extract the ZIP file**.
 3. Open **Google Chrome** and navigate to `chrome://extensions/`.
 4. Enable **Developer Mode** (toggle in the top-right corner).
