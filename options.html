@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Extension Settings</title>
+  <style>
+    body { font-family: Arial; padding: 20px; }
+    label, input, select { display: block; margin-bottom: 10px; }
+  </style>
+</head>
+<body>
+  <h2>Moodle Auto Login Settings</h2>
+  <label>Username: <input type="text" id="username" /></label>
+  <label>Password: <input type="password" id="password" /></label>
+  <label>Moodle Login URL:
+    <input type="text" id="moodleUrl" placeholder="https://your.moodle.url/login/index.php" />
+  </label>
+  <label>Quick Select Moodle URL:
+    <select id="urlDropdown">
+      <option value="">--Select--</option>
+      <option value="https://moodle3.ntnu.edu.tw/">NTNU (Taiwan)</option>
+    </select>
+  </label>
+  <button id="saveBtn">Save</button>
+  <p id="status"></p>
+
+  <script src="options.js"></script>
+</body>
+</html>
