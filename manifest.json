@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Moodle Auto Login (Secure)",
-  "version": "1.1",
+  "version": "1.2",
   "description": "Auto-login to Moodle every 20 minutes with secure credentials and notification.",
   "permissions": ["tabs", "storage", "scripting", "notifications"],
   "host_permissions": ["<all_urls>"],
@@ -17,7 +17,10 @@
   ],
   "action": {
     "default_title": "Moodle Auto Login",
-    "default_popup": "options.html"
-  },
+    "default_popup": "options.html",
+    "default_icon": {
+      "32": "media/icon.png"
+      }
+    },
   "options_page": "options.html"
 }
