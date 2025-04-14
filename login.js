@@ -54,6 +54,6 @@ chrome.storage.local.get(["moodleUsername", "moodlePassword", "moodleUrl"], (dat
     setTimeout(() => {
       notification.remove();
       loginForm.submit();
-    }, 3000);
+    }, 1000);
   }
 });

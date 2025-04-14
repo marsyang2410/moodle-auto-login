@@ -1,4 +1,4 @@
-const intervalMinutes = 20;
+const intervalMinutes = 15;
 
 function startAutoLoginLoop() {
   setInterval(() => {
@@ -7,28 +7,36 @@ function startAutoLoginLoop() {
 
       // Open Moodle login page in a background tab
       chrome.tabs.create({ url: loginUrl, active: false }, (tab) => {
-        // Execute script to check login status after tab loads
-        chrome.scripting.executeScript({
-          target: { tabId: tab.id },
-          func: checkLoginStatus,
-        }, ([result]) => {
-          if (result && result.isLoggedIn) {
-            // Already logged in → close tab immediately
-            chrome.tabs.remove(tab.id);
-          } else {
-            // Not logged in → inject login script
+        const tabId = tab.id;
+      
+        // Add listener to wait for tab to load
+        function onTabUpdated(updatedTabId, info) {
+          if (updatedTabId === tabId && info.status === 'complete') {
+            chrome.tabs.onUpdated.removeListener(onTabUpdated);
+      
+            // Now safe to inject
             chrome.scripting.executeScript({
-              target: { tabId: tab.id },
-              files: ["login.js"], // Your existing auto-login script
-            }, () => {
-              // Close tab after login (wait 5s for submission)
-              setTimeout(() => {
-                chrome.tabs.remove(tab.id);
-              }, 5000);
+              target: { tabId },
+              func: checkLoginStatus,
+            }, ([result]) => {
+              if (result && result.isLoggedIn) {
+                chrome.tabs.remove(tabId);
+              } else {
+                chrome.scripting.executeScript({
+                  target: { tabId },
+                  files: ["login.js"],
+                }, () => {
+                  setTimeout(() => {
+                    chrome.tabs.remove(tabId);
+                  }, 5000);
+                });
+              }
             });
           }
-        });
-      });
+        }
+      
+        chrome.tabs.onUpdated.addListener(onTabUpdated);
+      });      
     });
   }, intervalMinutes * 60 * 1000);
 }
